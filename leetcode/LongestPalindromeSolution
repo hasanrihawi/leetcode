@@ -1,0 +1,40 @@
+public class LongestPalindromeSolution {
+    public string LongestPalindrome(string s) {
+        if (s == null || s.Length < 1) return "";
+        string res="";
+        int resLen=0;
+        
+        for (int i = 0; i < s.Length; i++)
+        {
+            // for odd Palindromic 
+            int start = i;
+            int end = i;
+            while(start >= 0 && end < s.Length && s[start] == s[end])
+            {
+                if(end - start + 1 > resLen)
+                {
+                    resLen = end - start +1;
+                    res = s.Substring(start, end - start + 1);
+                }
+                start--;
+                end++;
+            }
+            
+            // for even Palindromic 
+            start = i;
+            end = i + 1;
+            while(start >= 0 && end < s.Length && s[start] == s[end])
+            {
+                if(end - start +1 > resLen)
+                {
+                    resLen = end - start +1;
+                    res = s.Substring(start, end - start + 1);
+                }
+                start--;
+                end++;
+            }
+        }
+        return res;
+        
+    }
+}
