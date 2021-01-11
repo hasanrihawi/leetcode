@@ -6,7 +6,7 @@ namespace leetcode
     {
         static void Main(string[] args)
         {
-            var x = new LengthOfLongestSubstringSolution2().LengthOfLongestSubstring("au");
+            var x = new LengthOfLongestSubstringSolution2().lengthOfLongestSubstring("au");
         }
     }
 }
