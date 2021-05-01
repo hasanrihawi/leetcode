@@ -9,77 +9,31 @@ namespace leetcode
     {
         public int solution(int N, int K, int[] A, int[] B, int[] C)
         {
-            Dictionary<int, List<int>> falvores = new Dictionary<int, List<int>>();
-            HashSet<int> badCakes = new HashSet<int>();
-            // write your code in C# 6.0 with .NET 4.5 (Mono)
+            Dictionary<int, List<int>> cakes = new Dictionary<int, List<int>>();
+            foreach (var cake in Enumerable.Range(1, N))
+                cakes.Add(cake, new List<int>());
 
-            for (int instructionIndex = 0; instructionIndex < C.Length; instructionIndex++)
+            for (int i = 0; i < C.Length; i++)
             {
-                int instructionFlavor = C[instructionIndex];
-                int instructionStart = A[instructionIndex];
-                int instructionEnd = B[instructionIndex];
-                if (falvores.ContainsKey(instructionFlavor))
+                int currentLayer = C[i];
+                for (int j = A[i]; j <= B[i]; j++)
                 {
-                    List<int> rangesList;
-                    falvores.TryGetValue(instructionFlavor,  out rangesList);
-
-                    if (instructionEnd == instructionStart)
+                    List<int> layersList;
+                    if (cakes.TryGetValue(j, out layersList))
                     {
-                        rangesList.Add(instructionStart);
+                        if (layersList.Count == 0 && currentLayer == 1 || layersList.Count > 0 && currentLayer == layersList.Last() + 1)
+                        {
+                            layersList.Add(currentLayer);
+                            cakes[j] = layersList;
+                        }
+                        else
+                            cakes.Remove(j);
                     }
-                    else if (instructionEnd > instructionStart)
-                    {
-                        var range = Enumerable.Range(instructionStart, instructionEnd - instructionStart +1);
-                        rangesList.AddRange(range);
-                    }
-                    falvores[instructionFlavor] = rangesList;
                 }
-                else
-                {
-                    var list = new List<int>();
-                    if (instructionEnd == instructionStart)
-                    {
-                        list.Add(instructionStart);
-                    }
-                    else if (instructionEnd > instructionStart)
-                    {
-                        var range = Enumerable.Range(instructionStart, instructionEnd - instructionStart + 1);
-                        list.AddRange(range);
-                    }
-                    falvores.Add(instructionFlavor, list);
-                }
+                   
             }
 
-            var cakes = Enumerable.Range(1, N);
-
-            foreach (var flavor in falvores)
-            {
-                if (flavor.Key <= K)
-                {
-                    var flavorShareList = flavor.Value;
-
-                    HashSet<int> hs = new HashSet<int>();
-
-                    // finding missing items
-                    var missingCakes = cakes.Except(flavorShareList);
-
-                    //finding duplicates items
-                    var duplicatedCakes = flavorShareList.GroupBy(x => x)
-                       .Where(g => g.Count() > 1)
-                       .Select(y => y.Key)
-                       .ToList();
-
-                    foreach (var m in missingCakes)
-                        badCakes.Add(m);
-                    foreach (var d in duplicatedCakes)
-                        badCakes.Add(d);
-                }
-            }
-
-            // finding good cakes by execludind bad cakes
-            var goodCakes = cakes.Except(badCakes);
-
-            return goodCakes.Count();
+            return cakes.Count();
         }
 
         //public int solution(int N, int K, int[] A, int[] B, int[] C)
