@@ -10,18 +10,17 @@ namespace leetcode
     {
         public static int sherlockAndAnagrams(string input)
         {
-            var hashedAnagrams = new ConcurrentDictionary<int, int>();
+            var hashedAnagrams = new ConcurrentDictionary<string, int>();
 
-            for (var i = 1; i < input.Length; i++)
+            for (var currSubLength = 1; currSubLength < input.Length; currSubLength++)
             {
-                for (var j = 0; j <= input.Length - i; j++)
+                for (var j = 0; j <= input.Length - currSubLength; j++)
                 {
-                    var subInput = input.Substring(j, i);
+                    var subInput = input.Substring(j, currSubLength);
                     var key = GetHashedAnagram(subInput);
                     hashedAnagrams.AddOrUpdate(key, 1, (id, count) => count + 1);
                 }
             }
-
 
             int anagrammaticPairs = 0;
             foreach (var count in hashedAnagrams)
@@ -31,7 +30,7 @@ namespace leetcode
         }
 
 
-        public static int GetHashedAnagram(string subInput)
+        public static string GetHashedAnagram(string subInput)
         {
             var frequencyTable = new ConcurrentDictionary<char, int>();
             foreach (char c in subInput)
@@ -39,11 +38,10 @@ namespace leetcode
             StringBuilder key = new StringBuilder();
 
             foreach (var item in frequencyTable.OrderBy(s => s.Key))
-            {
                 key.Append(item.Key + item.Value.ToString());
-            }
-
-            return key.ToString().GetHashCode();
+            
+            // we could use key.ToString().GetHashCode();
+            return key.ToString();
         }
 
     }

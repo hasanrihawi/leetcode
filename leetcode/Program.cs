@@ -59,7 +59,7 @@ namespace leetcode
             //var res1 = new ccccc().solution("555372654");
             //MinimumBribesResult.minimumBribes(new List<int>() { 1,2,3,5,4,6,7,8 });
             //TwoStrings.twoStrings("beetroot", "sandals");
-            SherlockandAnagrams.ProcessInput("hasan");
+            SherlockandAnagrams.sherlockAndAnagrams("kkkk");
         }
     }
 }
