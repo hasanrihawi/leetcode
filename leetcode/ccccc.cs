@@ -5,35 +5,51 @@ using System.Text;
 
 namespace leetcode
 {
-    public class Solution
+    public class ccccc
     {
-        public int solution(int N, int K, int[] A, int[] B, int[] C)
+        public string solution(string S)
         {
-            Dictionary<int, List<int>> cakes = new Dictionary<int, List<int>>();
-            foreach (var cake in Enumerable.Range(1, N))
-                cakes.Add(cake, new List<int>());
+            //List<string> foundedNames1 = B.Where(item => item.Contains(P)).ToList();
+            //List<string> foundedNames = B.Where(item => item.Contains(P)).Select((item, index) => A[index]).ToList();
 
-            for (int i = 0; i < C.Length; i++)
+            StringBuilder result = new StringBuilder();
+
+            var cleanedText = new string(S.ToCharArray()
+                .Where(c => !Char.IsWhiteSpace(c))
+                .Where(c => c != '-')
+                .ToArray());
+
+
+            int index = 0;
+            while (index < cleanedText.Length)
             {
-                int currentLayer = C[i];
-                for (int j = A[i]; j <= B[i]; j++)
+                int length = 2;
+                var sl = (cleanedText.Length - index) / 3;
+                var remain = (cleanedText.Length - index) % 3;
+                if (sl == 1 && remain == 0)
+                    length = 3;
+                else if(sl == 1 && remain < 2)
+                    length = 2;
+                else
                 {
-                    List<int> layersList;
-                    if (cakes.TryGetValue(j, out layersList))
-                    {
-                        if (layersList.Count == 0 && currentLayer == 1 || layersList.Count > 0 && currentLayer == layersList.Last() + 1)
-                        {
-                            layersList.Add(currentLayer);
-                            cakes[j] = layersList;
-                        }
-                        else
-                            cakes.Remove(j);
-                    }
+                    length = 3;
                 }
-                   
+                if(index+length < cleanedText.Length)
+                result.Append(cleanedText.Substring(index, length));
+                else
+                    result.Append(cleanedText.Substring(index));
+                result.Append('-');
+                var ss = result.ToString();
+                index = index + length;
             }
 
-            return cakes.Count();
+            
+
+            var s= result.ToString();
+            if (s.Last() == '-')
+                s = s.Remove(s.Length - 1);
+            
+            return s;
         }
 
         //public int solution(int N, int K, int[] A, int[] B, int[] C)
