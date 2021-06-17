@@ -98,7 +98,10 @@ namespace leetcode
             //MinimumBribesResult.minimumBribes(new List<int>() { 1,2,3,5,4,6,7,8 });
             //TwoStrings.twoStrings("beetroot", "sandals");
             //SherlockandAnagrams.sherlockAndAnagrams("kkkk");
-            CyclicRotation.rotLeft(new int[] { 3, 8, 9, 7, 6 }, 3);
+
+            //CyclicRotation.rotLeft(new int[] { 3, 8, 9, 7, 6 }, 3);
+
+            OddOccurrencesInArray.solution(new int[] { 9, 3, 9, 3, 9, 7, 9, 9, 3, 9, 3, 9, 7, 9, 9, 3, 9, 3, 9, 7, 9 });
         }
     }
 }
