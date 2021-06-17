@@ -4,7 +4,7 @@ using System.Text;
 
 namespace leetcode.Arrays
 {
-    public class rotateLeftArray
+    public class CyclicRotation
     {
         public static int[] rotLeft(int[] a, int d)
         {
@@ -12,7 +12,7 @@ namespace leetcode.Arrays
             for (int i = 0; i < a.Length; i++)
             {
                 int newIndex = (i + d) % a.Length;
-                rotated[i] = a[newIndex];
+                rotated[newIndex] = a[i];
             }
             return rotated;
         }
