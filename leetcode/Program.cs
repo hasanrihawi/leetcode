@@ -35,6 +35,17 @@ namespace leetcode
             //        9,
             //        new Node(4),
             //        new Node(3, new Node(6), lastNode)));
+            //var lastNode = new Node(7);
+            //var tree = new Node(
+            //    2,
+            //    new Node(
+            //        5,
+            //        new Node(1),
+            //        new Node(8, new Node(10))),
+            //    new Node(
+            //        9,
+            //        new Node(4),
+            //        new Node(3, new Node(6), lastNode)));
 
             //// Expected output:
             ////
@@ -61,8 +72,32 @@ namespace leetcode
             //    new List<int>() {6, 9, 1},
             //});
 
-            RansomNote.checkMagazine(new List<string>() { "give", "me", "one", "grand", "today", "night" }, new List<string>() { "give", "one", "grand", "today" });
+            //// Expected output:
+            ////
+            //// 7
+            //// 6
+            //// 5
+            //// 4
+            //// 3
+            //// 2
+            //// 1
+            ////
+            //string res = string.Empty;
+            //var n = lastNode;
+            //while (n != null)
+            //{
+            //    Console.WriteLine(n.Data);
+            //    n = n.Previous();
+            //    res = res + n.Data.ToString();
+            //}
 
+            //var res = new Solution().solution(3, 2, new int[]{ 1, 3, 3, 1, 1 }, new int[] { 2, 3, 3, 1, 2 }, new int[] { 1, 2, 1, 2, 2 });
+            //var res = new ccccc().solution(new string[] { "sander", "amy", "ann", "michael" }, new string[] { "123456789", "234567890", "789123456", "123123123" }, "1");
+            //var res = new ccccc().solution("00-44  48 5555 8361");
+            //var res1 = new ccccc().solution("555372654");
+            //MinimumBribesResult.minimumBribes(new List<int>() { 1,2,3,5,4,6,7,8 });
+            //TwoStrings.twoStrings("beetroot", "sandals");
+            SherlockandAnagrams.sherlockAndAnagrams("kkkk");
         }
     }
 }

@@ -5,81 +5,51 @@ using System.Text;
 
 namespace leetcode
 {
-    public class Solution
+    public class ccccc
     {
-        public int solution(int N, int K, int[] A, int[] B, int[] C)
+        public string solution(string S)
         {
-            Dictionary<int, List<int>> falvores = new Dictionary<int, List<int>>();
-            HashSet<int> badCakes = new HashSet<int>();
-            // write your code in C# 6.0 with .NET 4.5 (Mono)
+            //List<string> foundedNames1 = B.Where(item => item.Contains(P)).ToList();
+            //List<string> foundedNames = B.Where(item => item.Contains(P)).Select((item, index) => A[index]).ToList();
 
-            for (int instructionIndex = 0; instructionIndex < C.Length; instructionIndex++)
+            StringBuilder result = new StringBuilder();
+
+            var cleanedText = new string(S.ToCharArray()
+                .Where(c => !Char.IsWhiteSpace(c))
+                .Where(c => c != '-')
+                .ToArray());
+
+
+            int index = 0;
+            while (index < cleanedText.Length)
             {
-                int instructionFlavor = C[instructionIndex];
-                int instructionStart = A[instructionIndex];
-                int instructionEnd = B[instructionIndex];
-                if (falvores.ContainsKey(instructionFlavor))
-                {
-                    List<int> rangesList;
-                    falvores.TryGetValue(instructionFlavor,  out rangesList);
-
-                    if (instructionEnd == instructionStart)
-                    {
-                        rangesList.Add(instructionStart);
-                    }
-                    else if (instructionEnd > instructionStart)
-                    {
-                        var range = Enumerable.Range(instructionStart, instructionEnd - instructionStart +1);
-                        rangesList.AddRange(range);
-                    }
-                    falvores[instructionFlavor] = rangesList;
-                }
+                int length = 2;
+                var sl = (cleanedText.Length - index) / 3;
+                var remain = (cleanedText.Length - index) % 3;
+                if (sl == 1 && remain == 0)
+                    length = 3;
+                else if(sl == 1 && remain < 2)
+                    length = 2;
                 else
                 {
-                    var list = new List<int>();
-                    if (instructionEnd == instructionStart)
-                    {
-                        list.Add(instructionStart);
-                    }
-                    else if (instructionEnd > instructionStart)
-                    {
-                        var range = Enumerable.Range(instructionStart, instructionEnd - instructionStart + 1);
-                        list.AddRange(range);
-                    }
-                    falvores.Add(instructionFlavor, list);
+                    length = 3;
                 }
+                if(index+length < cleanedText.Length)
+                result.Append(cleanedText.Substring(index, length));
+                else
+                    result.Append(cleanedText.Substring(index));
+                result.Append('-');
+                var ss = result.ToString();
+                index = index + length;
             }
 
-            var cakes = Enumerable.Range(1, N);
+            
 
-            foreach (var flavor in falvores)
-            {
-                if (flavor.Key <= K)
-                {
-                    var flavorShareList = flavor.Value;
-
-                    HashSet<int> hs = new HashSet<int>();
-
-                    // finding missing items
-                    var missingCakes = cakes.Except(flavorShareList);
-
-                    //finding duplicates items
-                    var duplicatedCakes = flavorShareList.GroupBy(x => x)
-                       .Where(g => g.Count() > 1)
-                       .Select(y => y.Key)
-                       .ToList();
-
-                    foreach (var m in missingCakes)
-                        badCakes.Add(m);
-                    foreach (var d in duplicatedCakes)
-                        badCakes.Add(d);
-                }
-            }
-
-            // finding good cakes by execludind bad cakes
-            var goodCakes = cakes.Except(badCakes);
-
-            return goodCakes.Count();
+            var s= result.ToString();
+            if (s.Last() == '-')
+                s = s.Remove(s.Length - 1);
+            
+            return s;
         }
 
         //public int solution(int N, int K, int[] A, int[] B, int[] C)
