@@ -1,4 +1,6 @@
-﻿using leetcode.Warm_up_challenges;
+﻿using leetcode.Arrays;
+using leetcode.DictionariesAndHashmaps;
+using leetcode.Warm_up_challenges;
 using System;
 using System.Collections.Generic;
 
@@ -22,36 +24,44 @@ namespace leetcode
             //var res1 = SocksMatch.sockMerchant(20, new List<int>() { 4, 5, 5, 5, 6, 6, 4, 1, 4, 4, 3, 6, 6, 3, 6, 1, 4, 5, 5, 5 });
             // var res = CountingValley.countingValleys(8, "UDDDUDUU");
 
-            var lastNode = new Node(7);
-            var tree = new Node(
-                2,
-                new Node(
-                    5,
-                    new Node(1),
-                    new Node(8, new Node(10))),
-                new Node(
-                    9,
-                    new Node(4),
-                    new Node(3, new Node(6), lastNode)));
+            //var lastNode = new Node(7);
+            //var tree = new Node(
+            //    2,
+            //    new Node(
+            //        5,
+            //        new Node(1),
+            //        new Node(8, new Node(10))),
+            //    new Node(
+            //        9,
+            //        new Node(4),
+            //        new Node(3, new Node(6), lastNode)));
 
-            // Expected output:
-            //
-            // 7
-            // 6
-            // 5
-            // 4
-            // 3
-            // 2
-            // 1
-            //
-            string res = string.Empty;
-            var n = lastNode;
-            while (n != null)
-            {
-                Console.WriteLine(n.Data);
-                n = n.Previous();
-                res = res + n.Data.ToString();
-            }
+            //// Expected output:
+            ////
+            //// 7
+            //// 6
+            //// 5
+            //// 4
+            //// 3
+            //// 2
+            //// 1
+            ////
+            //string res = string.Empty;
+            //var n = lastNode;
+            //while (n != null)
+            //{
+            //    Console.WriteLine(n.Data);
+            //    n = n.Previous();
+            //    res = res + n.Data.ToString();
+            //}
+
+            //var x = arrayManipulation.ArrayManipulation(10, new List<List<int>>() {
+            //    new List<int>() {1 ,5, 3},
+            //    new List<int>() {4, 8, 7},
+            //    new List<int>() {6, 9, 1},
+            //});
+
+            RansomNote.checkMagazine(new List<string>() { "give", "me", "one", "grand", "today", "night" }, new List<string>() { "give", "one", "grand", "today" });
 
         }
     }
