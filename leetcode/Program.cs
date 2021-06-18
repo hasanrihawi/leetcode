@@ -101,7 +101,8 @@ namespace leetcode
 
             //CyclicRotation.rotLeft(new int[] { 3, 8, 9, 7, 6 }, 3);
 
-            OddOccurrencesInArray.solution(new int[] { 9, 3, 9, 3, 9, 7, 9, 9, 3, 9, 3, 9, 7, 9, 9, 3, 9, 3, 9, 7, 9 });
+            //OddOccurrencesInArray.solution(new int[] { 9, 3, 9, 3, 9, 7, 9, 9, 3, 9, 3, 9, 7, 9, 9, 3, 9, 3, 9, 7, 9 });
+            PermMissingElem.solution(new int[] { 2, 1, 3,4 });
         }
     }
 }
