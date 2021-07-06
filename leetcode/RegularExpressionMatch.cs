@@ -14,12 +14,12 @@ namespace leetcode
 
             if (pattern.Length >= 2 && pattern[1] == '*')
             {
-                return (isMatch(text, pattern.Substring(2)) ||
-                        (first_match && isMatch(text.Substring(1), pattern)));
+                return (isMatch(text, pattern[2..]) ||
+                        (first_match && isMatch(text[1..], pattern)));
             }
             else
             {
-                return first_match && isMatch(text.Substring(1), pattern.Substring(1));
+                return first_match && isMatch(text[1..], pattern[1..]);
             }
         }
     }
