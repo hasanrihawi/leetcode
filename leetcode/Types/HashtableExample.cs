@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace leetcode.Types
 {
@@ -10,9 +9,9 @@ namespace leetcode.Types
         public HashtableExample()
         {
             var cities = new Hashtable(){
-                {"UK", "London, Manchester, Birmingham"},
-                {"USA", "Chicago, New York, Washington"},
-                {"India", "Mumbai, New Delhi, Pune"}
+                {"UK", "London- Manchester- Birmingham"},
+                {"USA", "Chicago- New York- Washington"},
+                {"India", "Mumbai- New Delhi- Pune"}
             };
 
             //The following throws run-time exception: key already added.
@@ -27,8 +26,8 @@ namespace leetcode.Types
             Console.WriteLine(citiesOfUK);
             Console.WriteLine(citiesOfUSA);
 
-            cities["UK"] = "Liverpool, Bristol"; // update value of UK key
-            cities["USA"] = "Los Angeles, Boston"; // update value of USA key
+            cities["UK"] = "Liverpool- Bristol"; // update value of UK key
+            cities["USA"] = "Los Angeles- Boston"; // update value of USA key
 
             if (!cities.ContainsKey("France"))
             {
