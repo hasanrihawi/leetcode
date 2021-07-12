@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace leetcode.Types
 {
@@ -20,12 +18,12 @@ namespace leetcode.Types
             return root;
         }
 
-        bool checkBST(BinaryNode node, int min, int max)
+        bool checkBST(BinaryNode root, int min, int max)
         {
-            if (node == null) return true;
-            return node.Value > min && node.Value < max &&
-                checkBST(node.Left, min, node.Value) &&
-                checkBST(node.Right, node.Value, max);
+            if (root == null) return true;
+            return root.Value > min && root.Value < max &&
+                checkBST(root.Left, min, root.Value) &&
+                checkBST(root.Right, root.Value, max);
         }
 
         public void traverse(BinaryNode root)
@@ -50,31 +48,31 @@ namespace leetcode.Types
             this.Root = Remove(this.Root, value);
         }
 
-        private BinaryNode Remove(BinaryNode parent, int key)
+        private BinaryNode Remove(BinaryNode root, int key)
         {
-            if (parent == null) return parent;
+            if (root == null) return root;
 
-            if (key < parent.Value) parent.Left = Remove(parent.Left, key);
-            else if (key > parent.Value)
-                parent.Right = Remove(parent.Right, key);
+            if (key < root.Value) root.Left = Remove(root.Left, key);
+            else if (key > root.Value)
+                root.Right = Remove(root.Right, key);
 
             // if value is same as parent's value, then this is the node to be deleted  
             else
             {
                 // node with only one child or no child  
-                if (parent.Left == null)
-                    return parent.Right;
-                else if (parent.Right == null)
-                    return parent.Left;
+                if (root.Left == null)
+                    return root.Right;
+                else if (root.Right == null)
+                    return root.Left;
 
                 // node with two children: Get the inorder successor (smallest in the right subtree)  
-                parent.Value = MinValue(parent.Right);
+                root.Value = MinValue(root.Right);
 
                 // Delete the inorder successor  
-                parent.Right = Remove(parent.Right, parent.Value);
+                root.Right = Remove(root.Right, root.Value);
             }
 
-            return parent;
+            return root;
         }
 
         private int MinValue(BinaryNode node)

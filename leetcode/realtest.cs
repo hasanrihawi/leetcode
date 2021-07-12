@@ -5,44 +5,44 @@ using System.Linq;
 
 namespace leetcode
 {
-    public class Node
+    public class Node1
     {
-        private List<Node> _children;
+        private List<Node1> _children;
 
-        public Node(int data, params Node[] nodes)
+        public Node1(int data, params Node1[] nodes)
         {
             Data = data;
             AddRange(nodes);
         }
 
-        public Node Parent { get; set; }
+        public Node1 Parent { get; set; }
 
-        public IEnumerable<Node> Children
+        public IEnumerable<Node1> Children
         {
             get
             {
                 return _children != null
                     ? _children.AsReadOnly()
-                    : Enumerable.Empty<Node>();
+                    : Enumerable.Empty<Node1>();
             }
         }
 
         public int Data { get; private set; }
 
-        public void Add(Node node)
+        public void Add(Node1 node)
         {
             Debug.Assert(node.Parent == null);
 
             if (_children == null)
             {
-                _children = new List<Node>();
+                _children = new List<Node1>();
             }
 
             _children.Add(node);
             node.Parent = this;
         }
 
-        public void AddRange(IEnumerable<Node> nodes)
+        public void AddRange(IEnumerable<Node1> nodes)
         {
             foreach (var node in nodes)
             {
@@ -58,7 +58,7 @@ namespace leetcode
 
     public static class NodeExtensions
     {
-        public static Node Previous(this Node node)
+        public static Node1 Previous(this Node1 node)
         {
             if (node.Parent == null) { return null; }
             var brothers = node.Parent.Children.ToList();
