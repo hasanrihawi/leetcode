@@ -1,27 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace leetcode.Types.Graph
 {
     class Graph2
     {
-        int numberOfVertices;
+        int nodesCount;
         List<int>[] graph;
         bool[] visited;
         long[] costs;
 
-        Graph2(int numberOfVertices, long[] costs)
+        Graph2(int nodesCount, long[] costs)
         {
-            this.numberOfVertices = numberOfVertices;
-            this.graph = new List<int>[numberOfVertices];
-            for (int v = 0; v < numberOfVertices; v++)
-            {
+            this.nodesCount = nodesCount;
+            this.graph = new List<int>[nodesCount];
+            for (int v = 0; v < nodesCount; v++)
                 graph[v] = new List<int>();
-            }
-
             this.costs = costs;
-            this.visited = new bool[numberOfVertices];
+            this.visited = new bool[nodesCount];
         }
 
         void addEdge(int n1, int n2)
@@ -54,7 +50,7 @@ namespace leetcode.Types.Graph
             long sum = 0L;
 
             // Traverse for all nodes
-            for (int i = 0; i < numberOfVertices; i++)
+            for (int i = 0; i < nodesCount; i++)
             {
                 if (!visited[i])
                 {
@@ -69,12 +65,12 @@ namespace leetcode.Types.Graph
         public static void main1(String[] args)
         {
             // number of persons
-            int numberOfNodes = 5;
+            int nodesCount = 5;
 
             // cost of saying the rumor to person
             long[] costs = new long[] { 2, 5, 3, 4, 8 };
 
-            Graph2 g = new Graph2(numberOfNodes, costs);
+            Graph2 g = new Graph2(nodesCount, costs);
 
             // numberOfRelations
             g.addEdge(0, 3);
