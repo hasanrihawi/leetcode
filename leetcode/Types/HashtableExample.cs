@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace leetcode.Types
 {
+    // https://www.youtube.com/watch?v=KyUTuwz_b7Q
     class HashtableExample
     {
         public HashtableExample()
