@@ -61,7 +61,7 @@ namespace leetcode.CrackingInterviews
                 merge(arr, start, middle, end);
             }
         }
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             int[] arr = { 76, 89, 23, 1, 55, 78, 99, 12, 65, 100 };
             int n = arr.Length, i;

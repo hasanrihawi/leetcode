@@ -1,5 +1,6 @@
 ﻿using leetcode.Arrays;
 using leetcode.DictionariesAndHashmaps;
+using leetcode.Types.Graph;
 using leetcode.Warm_up_challenges;
 using System;
 using System.Collections.Generic;
@@ -103,7 +104,11 @@ namespace leetcode
 
             //OddOccurrencesInArray.solution(new int[] { 9, 3, 9, 3, 9, 7, 9, 9, 3, 9, 3, 9, 7, 9, 9, 3, 9, 3, 9, 7, 9 });
             //PermMissingElem.solution(new int[] { 2, 1, 3,4 });
-            TapeEquilibrium.solution(new int[] { 1,2 });
+            //TapeEquilibrium.solution(new int[] { 1,2 });
+
+            //Graph.Main1(args);
+
+            Graph2.main2(args);
         }
     }
 }
