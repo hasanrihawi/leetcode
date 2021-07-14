@@ -10,10 +10,10 @@ namespace leetcode.Types
         {
             if (root == null)
                 root = new BinaryNode(v);
-            else if (v < root.Value)
-                root.Left = insert(root.Left, v);
+            else if (v < root.data)
+                root.left = insert(root.left, v);
             else
-                root.Right = insert(root.Right, v);
+                root.right = insert(root.right, v);
 
             return root;
         }
@@ -21,21 +21,21 @@ namespace leetcode.Types
         bool checkBST(BinaryNode root, int min, int max)
         {
             if (root == null) return true;
-            return root.Value > min && root.Value < max &&
-                checkBST(root.Left, min, root.Value) &&
-                checkBST(root.Right, root.Value, max);
+            return root.data > min && root.data < max &&
+                checkBST(root.left, min, root.data) &&
+                checkBST(root.right, root.data, max);
         }
 
         public void traverse(BinaryNode root)
         {
             if (root == null)
             {
-                Console.Write(root.Value + " ");
+                Console.Write(root.data + " ");
                 return;
             }
 
-            traverse(root.Left);
-            traverse(root.Right);
+            traverse(root.left);
+            traverse(root.right);
         }
 
         public BinaryNode Find(int value)
@@ -52,24 +52,24 @@ namespace leetcode.Types
         {
             if (root == null) return root;
 
-            if (key < root.Value) root.Left = Remove(root.Left, key);
-            else if (key > root.Value)
-                root.Right = Remove(root.Right, key);
-
-            // if value is same as parent's value, then this is the node to be deleted  
+            if (key < root.data) 
+                root.left = Remove(root.left, key);
+            else if (key > root.data)
+                root.right = Remove(root.right, key);
             else
             {
+                // if value is same as parent's value, then this is the node to be deleted  
                 // node with only one child or no child  
-                if (root.Left == null)
-                    return root.Right;
-                else if (root.Right == null)
-                    return root.Left;
+                if (root.left == null)
+                    return root.right;
+                else if (root.right == null)
+                    return root.left;
 
                 // node with two children: Get the inorder successor (smallest in the right subtree)  
-                root.Value = MinValue(root.Right);
+                root.data = MinValue(root.right);
 
                 // Delete the inorder successor  
-                root.Right = Remove(root.Right, root.Value);
+                root.right = Remove(root.right, root.data);
             }
 
             return root;
@@ -77,12 +77,12 @@ namespace leetcode.Types
 
         private int MinValue(BinaryNode node)
         {
-            int minv = node.Value;
+            int minv = node.data;
 
-            while (node.Left != null)
+            while (node.left != null)
             {
-                minv = node.Left.Value;
-                node = node.Left;
+                minv = node.left.data;
+                node = node.left;
             }
 
             return minv;
@@ -92,11 +92,11 @@ namespace leetcode.Types
         {
             if (parent != null)
             {
-                if (value == parent.Value) return parent;
-                if (value < parent.Value)
-                    return Find(value, parent.Left);
+                if (value == parent.data) return parent;
+                if (value < parent.data)
+                    return Find(value, parent.left);
                 else
-                    return Find(value, parent.Right);
+                    return Find(value, parent.right);
             }
 
             return null;
@@ -109,16 +109,16 @@ namespace leetcode.Types
 
         private int GetTreeDepth(BinaryNode parent)
         {
-            return parent == null ? 0 : Math.Max(GetTreeDepth(parent.Left), GetTreeDepth(parent.Right)) + 1;
+            return parent == null ? 0 : Math.Max(GetTreeDepth(parent.left), GetTreeDepth(parent.right)) + 1;
         }
 
         public void TraversePreOrder(BinaryNode parent)
         {
             if (parent != null)
             {
-                Console.Write(parent.Value + " ");
-                TraversePreOrder(parent.Left);
-                TraversePreOrder(parent.Right);
+                Console.Write(parent.data + " ");
+                TraversePreOrder(parent.left);
+                TraversePreOrder(parent.right);
             }
         }
 
@@ -126,9 +126,9 @@ namespace leetcode.Types
         {
             if (parent != null)
             {
-                TraverseInOrder(parent.Left);
-                Console.Write(parent.Value + " ");
-                TraverseInOrder(parent.Right);
+                TraverseInOrder(parent.left);
+                Console.Write(parent.data + " ");
+                TraverseInOrder(parent.right);
             }
         }
 
@@ -136,21 +136,21 @@ namespace leetcode.Types
         {
             if (parent != null)
             {
-                TraversePostOrder(parent.Left);
-                TraversePostOrder(parent.Right);
-                Console.Write(parent.Value + " ");
+                TraversePostOrder(parent.left);
+                TraversePostOrder(parent.right);
+                Console.Write(parent.data + " ");
             }
         }
     }
 
     class BinaryNode
     {
-        public BinaryNode(int value)
+        public BinaryNode(int data)
         {
-            this.Value = value;
+            this.data = data;
         }
-        public BinaryNode Left { get; set; }
-        public BinaryNode Right { get; set; }
-        public int Value { get; set; }
+        public BinaryNode left { get; set; }
+        public BinaryNode right { get; set; }
+        public int data { get; set; }
     }
 }
