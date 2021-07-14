@@ -7,28 +7,27 @@ namespace leetcode.Types.Graph
     class Graph2
     {
         int numberOfVertices;
-        LinkedList<int>[] graph;
+        List<int>[] graph;
         bool[] visited;
         long[] costs;
 
         Graph2(int numberOfVertices, long[] costs)
         {
             this.numberOfVertices = numberOfVertices;
-            this.graph = new LinkedList<int>[numberOfVertices];
+            this.graph = new List<int>[numberOfVertices];
             for (int v = 0; v < numberOfVertices; v++)
             {
-                graph[v] = new LinkedList<int>();
+                graph[v] = new List<int>();
             }
 
             this.costs = costs;
             this.visited = new bool[numberOfVertices];
-
         }
 
-        void addEdge(int u, int v)
+        void addEdge(int n1, int n2)
         {
-            graph[u].AddLast(v);
-            graph[v].AddLast(u);
+            graph[n1].Add(n2);
+            graph[n2].Add(n1);
         }
 
         long dfs(int node, long miniCost)
@@ -70,27 +69,16 @@ namespace leetcode.Types.Graph
         public static void main1(String[] args)
         {
             // number of persons
-            int numberOfVertices = 5;
-
-            // number of relations
-            int numberOfRelations = 2;
+            int numberOfNodes = 5;
 
             // cost of saying the rumor to person
-            long[] costs = new long[numberOfVertices];
+            long[] costs = new long[] { 2, 5, 3, 4, 8 };
 
-            Graph2 g = new Graph2(numberOfVertices, costs);
-
-            // numberOfVertices
-            costs[0] = 2;
-            costs[1] = 5;
-            costs[2] = 3;
-            costs[3] = 4;
-            costs[4] = 8;
+            Graph2 g = new Graph2(numberOfNodes, costs);
 
             // numberOfRelations
             g.addEdge(0, 3);
             g.addEdge(3, 4);
-
 
             // Expected Output: 10
             g.minimumSumConnectedComponents();
@@ -101,23 +89,8 @@ namespace leetcode.Types.Graph
             // number of persons
             int numberOfVertices = 10;
 
-            // number of relations
-            int numberOfRelations = 5;
-
             // cost of saying the rumor to person
-            long[] costs = new long[numberOfVertices];
-            // numberOfVertices
-            costs[0] = 1;
-            costs[1] = 6;
-            costs[2] = 2;
-            costs[3] = 7;
-            costs[4] = 3;
-            costs[5] = 8;
-            costs[6] = 4;
-            costs[7] = 9;
-            costs[8] = 5;
-            costs[9] = 10;
-
+            long[] costs = new long[] { 1, 6, 2, 7, 3, 8, 4, 9, 5, 10 };
 
             Graph2 g = new Graph2(numberOfVertices, costs);
 
@@ -128,8 +101,7 @@ namespace leetcode.Types.Graph
             g.addEdge(6, 7);
             g.addEdge(8, 9);
 
-
-            // Expected Output: 10
+            // Expected Output: 15
             g.minimumSumConnectedComponents();
         }
     }
