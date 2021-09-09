@@ -136,3 +136,37 @@ GROUP BY CTY.CITY_NAME, PRD.PRODUCT_NAME
 ORDER BY SUMTOTAL, CTY.CITY_NAME, PRD.PRODUCT_NAME
 
 ------------------------------------------------
+
+select sum(ci.population) from city as ci
+inner join country as cou on ci.CountryCode = cou.Code
+where cou.CONTINENT = 'Asia'
+
+------------------------------------------------
+
+select cou.Continent,cast(round(avg(ci.Population),0) AS int ) from city as ci
+inner join country as cou on ci.CountryCode = cou.Code
+group by cou.CONTINENT
+
+------------------------------------------------
+
+SELECT Iif(g.grade < 8, NULL, s.NAME), g.grade, s.marks FROM students s
+JOIN grades g 
+ON s.marks BETWEEN g.min_mark AND g.max_mark 
+ORDER BY g.grade DESC, s.NAME
+
+------------------------------------------------
+
+select s.hacker_id, h.name
+from Submissions s
+join Hackers h
+on s.hacker_id=h.hacker_id
+join Challenges c
+on s.challenge_id = c.challenge_id
+join Difficulty d
+on c.difficulty_level=d.difficulty_level
+where s.score=d.score
+group by s.hacker_id, h.name
+having count(s.hacker_id)>1
+order by count(s.challenge_id) desc,s.hacker_id
+
+------------------------------------------------

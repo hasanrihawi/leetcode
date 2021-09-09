@@ -1,5 +1,6 @@
 ﻿using leetcode.Arrays;
 using leetcode.DictionariesAndHashmaps;
+using leetcode.hackerRank;
 using leetcode.Types.Graph;
 using leetcode.Warm_up_challenges;
 using System;
@@ -108,7 +109,8 @@ namespace leetcode
 
             //Graph.Main1(args);
 
-            Graph2.main2(args);
+            //Graph2.main2(args);
+            SolutionCountTriplets.CountTriplets(new List<long>{ 1,4,16,64},4);
         }
     }
 }
