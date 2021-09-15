@@ -19,17 +19,18 @@ namespace leetcode.hackerRank
 
                 if (counter.ContainsKey(key) && a % r == 0)
                 {
-                    count += counter.GetValueOrDefault(key);
+                    _ = counter.TryGetValue(key, out var value) ? value : default(long);
+                    count += value;
                 }
 
                 if (potential.ContainsKey(key) && a % r == 0)
                 {
-                    long c = potential.GetValueOrDefault(key);
-                    counter.AddOrUpdate(a, c, (k, oldValue) => oldValue + c);
+                    _ = potential.TryGetValue(key, out var value) ? value : default(long);
+                    counter.AddOrUpdate(a, value, (k, oldValue) => oldValue + value);
                 }
 
-                long d = potential.GetValueOrDefault(a, 0L) +1;
-                potential.AddOrUpdate(a, d, (k, oldValue) => oldValue + d);
+                _ = potential.TryGetValue(key, out var d) ? d : default(long);
+                potential.AddOrUpdate(a, d + 1, (k, oldValue) => oldValue + d + 1);
             }
             return count;
         }
