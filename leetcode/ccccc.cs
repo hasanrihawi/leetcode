@@ -11,7 +11,7 @@ namespace leetcode
         {
             //List<string> foundedNames1 = B.Where(item => item.Contains(P)).ToList();
             //List<string> foundedNames = B.Where(item => item.Contains(P)).Select((item, index) => A[index]).ToList();
-
+            // edit
             StringBuilder result = new StringBuilder();
 
             var cleanedText = new string(S.ToCharArray()
